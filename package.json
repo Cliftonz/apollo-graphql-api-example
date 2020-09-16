@@ -1,0 +1,27 @@
+{
+  "name": "p422-express-graphql-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "graphql": "^15.3.0"
+  },
+  "devDependencies": {
+    "@graphql-tools/graphql-file-loader": "^6.2.2",
+    "@graphql-tools/load": "^6.2.2",
+    "@graphql-tools/schema": "^6.2.2",
+    "apollo-server": "^2.17.0",
+    "graphql-import-node": "0.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": " node index.js"
+  },
+  "author": "Zac Clifton",
+  "license": "ISC"
+}

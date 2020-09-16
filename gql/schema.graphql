@@ -1,0 +1,40 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type employee {
+    name: String
+    job: String
+    experience: Int
+}
+
+type companies {
+    id: ID!
+    name: String
+    numberOfEmployees: Int
+    employees: [employee!]
+}
+
+type Query {
+    getemployee (companyName: ID! name: String!): employee
+    allEmployeesForACompany(companyName: String!): [employee!]!
+    getcompany (name: String): companies
+    allcompanies: [companies!]!
+}
+
+type Mutation {
+    addemployee (
+        # Name for the User item
+        name: String!
+        companyId: ID! ): employee!
+    addcompany (
+        name: String!
+        numberOfEmployees: String ): companies!
+    removeEmployee (
+        name: String!
+        companyId: ID! ): employee!
+    updateEmployee (
+        name: String!
+        companyId: ID! ): employee!
+}
