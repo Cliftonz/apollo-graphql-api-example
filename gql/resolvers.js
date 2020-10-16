@@ -1,4 +1,11 @@
 const data = require('../data/data')
+//const {pubsub} = require("../index");
+//import pubsub from '../index';
+const { PubSub } = require('graphql-subscriptions');
+
+const pubsub = new PubSub();
+
+//const pubsub = require("../index");
 
 const resolvers = {
     companies:{
@@ -43,17 +50,27 @@ const resolvers = {
     },
     Mutation: {
         addcompany(parent, args, context, info){
+            let id = args.id;
             let name1 = args.name;
             let rname = name1.replace(' ','');
             data.companies[rname] = {
-                id: 50,
+                id: id,
                 name: name1,
                 numberOfEmployees: args.numberOfEmployees
             }
-            return data.companies[rname]
+
+            let ret = pubsub.publish('commentAdded', {commentAdded: data.companies[rname]})
+            console.log(ret);
+            console.log(data.companies);
+            return data.companies[rname];
         },
         updateEmployee(parent, args, context, info){
             return "unimplemented"
+        }
+    },
+    Subscription:{
+        companyAdded: {
+            subscribe: () => pubsub.asyncIterator('companiesAdded')
         }
     }
 };

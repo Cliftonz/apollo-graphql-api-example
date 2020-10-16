@@ -1,6 +1,7 @@
 schema {
     query: Query
     mutation: Mutation
+    subscription: Subscription
 }
 
 type employee {
@@ -25,10 +26,10 @@ type Query {
 
 type Mutation {
     addemployee (
-        # Name for the User item
         name: String!
         companyId: ID! ): employee!
     addcompany (
+        id: ID!
         name: String!
         numberOfEmployees: String ): companies!
     removeEmployee (
@@ -37,4 +38,8 @@ type Mutation {
     updateEmployee (
         name: String!
         companyId: ID! ): employee!
+}
+
+type Subscription {
+    companyAdded(compID: Int): companies
 }
